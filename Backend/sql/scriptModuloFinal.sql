@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 11g                           */
-/* Created on:     7/08/2022 8:05:46 p. m.                      */
+/* Created on:     8/08/2022 12:27:14 a. m.                     */
 /*==============================================================*/
 
 
@@ -305,7 +305,7 @@ create index RESPONSABLE_ASISRESP_FK on ASISTIRRESPONSABLE (
 create table CARGO 
 (
    IDCARGO              VARCHAR2(2)          not null,
-   DESCARGO             VARCHAR2(20)         not null,
+   DESCARGO             VARCHAR2(30)         not null,
    constraint PK_CARGO primary key (IDCARGO)
 );
 
@@ -556,7 +556,7 @@ create index RELACION_ESPACIO_ESTUDIANTE_FK on ESTUDIANTE (
 /*==============================================================*/
 create table HORA 
 (
-   IDHORA               VARCHAR2(2)          not null,
+   IDHORA               VARCHAR2(5)          not null,
    constraint PK_HORA primary key (IDHORA)
 );
 
@@ -598,7 +598,7 @@ create index PROGRAMACION_INSPRACLIB_FK on INSCRITOPRACLIBRE (
 /*==============================================================*/
 create table MARCA 
 (
-   IDMARCA              VARCHAR2(2)          not null,
+   IDMARCA              VARCHAR2(3)          not null,
    NOMMARCA             VARCHAR2(20)         not null,
    constraint PK_MARCA primary key (IDMARCA)
 );
@@ -782,7 +782,7 @@ create index PROGRAMACION_RESPONSABLE_FK on RESPONSABLE (
 create table ROL 
 (
    IDROL                VARCHAR2(1)          not null,
-   DESCROL              VARCHAR2(15)         not null,
+   DESCROL              VARCHAR2(20)         not null,
    constraint PK_ROL primary key (IDROL)
 );
 
