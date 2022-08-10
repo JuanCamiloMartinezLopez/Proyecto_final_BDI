@@ -1,6 +1,7 @@
 from flask import Flask
 from models import db, ma
 from flask_restful import Api
+from flask_cors import CORS
 
 from routes.actividadRoute import ActividadesResource,ActividadResource
 from routes.asismiembroequipoRoute import AsismiembroequipoResource,AsismiembroequiposResource
@@ -32,8 +33,10 @@ from routes.asistenciaDocente import AsistenciaDocenteResource
 ## Declaracion inicial
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'oracle+cx_oracle://cdrodriguezl:cdrodriguezl@localhost:1521/xe'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'oracle+cx_oracle://camilo:jc_o980109ML@localhost:1521/xe'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 db.init_app(app)
 ma.init_app(app)
 api = Api(app)

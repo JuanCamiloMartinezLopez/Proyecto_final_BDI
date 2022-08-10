@@ -1,5 +1,5 @@
-Backend/src/__pycache__
-Backend/src/routes/__pycache__
-Backend/src/models/__pycache__
-Backend/venv
-Frontend/cliente/node_modules
+./Backend/src/__pycache__/
+./Backend/src/routes/__pycache__/
+./Backend/src/models/__pycache__/
+./Backend/venv/
+./Frontend/cliente/node_modules

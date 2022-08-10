@@ -11,7 +11,7 @@ class LoginAuxResource(Resource):
     def get(self,code_emp):
         auxiliar=EmpleadoCargo.query.filter_by(codempleado_empleadocargo=code_emp,idcargo_empleadocargo="1",fechafincar=None).first()
         if auxiliar is None:
-            return {}, 404
+            return {"login":False}, 404
         print(equipo_schema.dump(auxiliar))
-        return {"info_empleado":equipo_schema.dump(auxiliar),"fecha":date.today().strftime("%d-%m-%Y"), "hora":datetime.now().hour}
+        return {"info_empleado":equipo_schema.dump(auxiliar),"fecha":date.today().strftime("%d-%m-%Y"), "hora":datetime.now().strftime('%H:%M'),"login":True}
 
