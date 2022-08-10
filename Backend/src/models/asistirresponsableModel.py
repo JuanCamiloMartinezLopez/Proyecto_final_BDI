@@ -8,9 +8,9 @@ class Asistirresponsable(db.Model):
         db.Index('responsable_asisresp_fk', 'consecprogra_responsable', 'consecres_asistirresponsable')
     )
 
-    consecprogra_responsable = db.Column(db.Numeric(4, 0), primary_key=True, nullable=False)
-    consecres_asistirresponsable = db.Column(db.Numeric(4, 0), primary_key=True, nullable=False)
-    consecasisres = db.Column(db.Numeric(4, 0), primary_key=True, nullable=False)
+    consecprogra_responsable = db.Column(db.Integer, primary_key=True, nullable=False)
+    consecres_asistirresponsable = db.Column(db.Integer, primary_key=True, nullable=False)
+    consecasisres = db.Column(db.Integer, primary_key=True, nullable=False)
     fechaasisres = db.Column(db.Date, nullable=False)
     horaasisres = db.Column(db.Date, nullable=False)
 

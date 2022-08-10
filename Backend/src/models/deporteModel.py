@@ -16,6 +16,7 @@ class Deporte(db.Model):
     tipoelemento = db.relationship('Tipoelemento', secondary='deporte_tipoelemento', backref='deportes')
 
 class DeporteSchema(ma.SQLAlchemyAutoSchema):
-    tipoelemento=ma.Nested(TipoelementoSchema,many=True)
     class Meta:
         model=Deporte
+        fields=("iddeporte","nomdeporte","tipoelemento")
+    tipoelemento=ma.Nested(TipoelementoSchema,many=True)

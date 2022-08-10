@@ -7,10 +7,10 @@ class Prestamo(db.Model):
         db.Index('asistirresponsable_prestamo_fk', 'consecprogra_resp_prest', 'consecres_asisresp_prest', 'consecasisres_prestamo')
     )
 
-    consecprestamo = db.Column(db.Numeric(4, 0), primary_key=True)
-    consecprogra_resp_prest = db.Column(db.Numeric(4, 0), nullable=False)
-    consecres_asisresp_prest = db.Column(db.Numeric(4, 0), nullable=False)
-    consecasisres_prestamo = db.Column(db.Numeric(4, 0), nullable=False)
+    consecprestamo = db.Column(db.Integer, primary_key=True)
+    consecprogra_resp_prest = db.Column(db.Integer, nullable=False)
+    consecres_asisresp_prest = db.Column(db.Integer, nullable=False)
+    consecasisres_prestamo = db.Column(db.Integer, nullable=False)
     consecelemento_prestamo = db.Column(db.ForeignKey('elemendeportivo.consecelemento', ondelete='RESTRICT', onupdate='RESTRICT'), nullable=False, index=True)
 
     elemendeportivo = db.relationship('Elemendeportivo', primaryjoin='Prestamo.consecelemento_prestamo == Elemendeportivo.consecelemento', backref='prestamoes')

@@ -1,11 +1,13 @@
+from models.espacioModel import EspacioSchema
+from models.tipoelementoModel import TipoelementoSchema
 from . import db,ma
-from .estadoModel import Estado
-from .marcaModel import Marca
+from .estadoModel import Estado, EstadoSchema
+from .marcaModel import Marca, MarcaSchema
 
 class Elemendeportivo(db.Model):
     __tablename__ = 'elemendeportivo'
 
-    consecelemento = db.Column(db.Numeric(5, 0), primary_key=True)
+    consecelemento = db.Column(db.Integer, primary_key=True)
     codespacio_elemendeportivo = db.Column(db.ForeignKey('espacio.codespacio', ondelete='RESTRICT', onupdate='RESTRICT'), nullable=False, index=True)
     idtipoelemento_elemendeportivo = db.Column(db.ForeignKey('tipoelemento.idtipoelemento', ondelete='RESTRICT', onupdate='RESTRICT'), nullable=False, index=True)
     idestado_elemendeportivo = db.Column(db.ForeignKey('estado.idestado', ondelete='RESTRICT', onupdate='RESTRICT'), nullable=False, index=True)
@@ -20,3 +22,8 @@ class Elemendeportivo(db.Model):
 class ElemendeportivoSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model=Elemendeportivo
+        fields=("consecelemento","fecharegistro","espacio","estado","marca","tipoelemento")
+    espacio=ma.Nested(EspacioSchema)
+    estado=ma.Nested(EstadoSchema)
+    marca=ma.Nested(MarcaSchema)
+    tipoelemento=ma.Nested(TipoelementoSchema)

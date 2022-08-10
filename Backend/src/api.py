@@ -26,6 +26,9 @@ from routes.responsableRoute import ResponsableResource, ResponsablesResource
 from routes.rolRoute import RolResource, RolsResource
 from routes.tipoelementoRoute import TipoelementoResource, TipoelementosResource
 from routes.tipoespacioRoute import TipoespaciosResource, TipoespacioResource
+
+from routes.loginAux import LoginAuxResource
+from routes.asistenciaDocente import AsistenciaDocenteResource
 ## Declaracion inicial
 
 app = Flask(__name__)
@@ -106,6 +109,10 @@ api.add_resource(TipoelementoResource,'/tipoelemento/<string:tipoelemento_id>')
 
 api.add_resource(TipoespaciosResource, '/tipoespacio')
 api.add_resource(TipoespacioResource,'/tipoespacio/<string:tipoespacio_id>')
+
+api.add_resource(LoginAuxResource,'/login/<string:code_emp>')
+
+api.add_resource(AsistenciaDocenteResource,'/asistencia_docente/<string:nom_doc>/<string:apell_doc>')
 
 if __name__ == '__main__':
     app.run(debug=True)

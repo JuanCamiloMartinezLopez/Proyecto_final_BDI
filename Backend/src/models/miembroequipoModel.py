@@ -7,7 +7,7 @@ class Miembroequipo(db.Model):
     __tablename__ = 'miembroequipo'
 
     conseequipo_miembroequipo = db.Column(db.ForeignKey('equipo.conseequipo', ondelete='RESTRICT', onupdate='RESTRICT'), primary_key=True, nullable=False, index=True)
-    itemmiembro = db.Column(db.Numeric(3, 0), primary_key=True, nullable=False)
+    itemmiembro = db.Column(db.Integer, primary_key=True, nullable=False)
     codestu_miembroequipo = db.Column(db.ForeignKey('estudiante.codestu', ondelete='RESTRICT', onupdate='RESTRICT'), nullable=False, index=True)
 
     estudiante = db.relationship('Estudiante', primaryjoin='Miembroequipo.codestu_miembroequipo == Estudiante.codestu', backref='miembroequipoes')

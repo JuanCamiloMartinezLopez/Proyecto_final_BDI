@@ -21,6 +21,8 @@ class Espacio(db.Model):
     deporte = db.relationship('Deporte', secondary='espacio_deporte', backref='espacios')
 
 class EspacioSchema(ma.SQLAlchemyAutoSchema):
-    deporte=ma.Nested(DeporteSchema,many=True)
+    
     class Meta:
         model=Espacio
+        fields=("codespacio","nomespacio","deporte")
+    deporte=ma.Nested(DeporteSchema,many=True)

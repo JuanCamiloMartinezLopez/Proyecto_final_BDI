@@ -10,9 +10,9 @@ class Asismiembroequipo(db.Model):
     )
 
     consecprogra_asismiembroequipo = db.Column(db.ForeignKey('programacion.consecprogra', ondelete='RESTRICT', onupdate='RESTRICT'), primary_key=True, nullable=False, index=True)
-    conmiemequipo = db.Column(db.Numeric(4, 0), primary_key=True, nullable=False)
-    conseequipo_miemeq_asismiemeq = db.Column(db.Numeric(3, 0), nullable=False)
-    itemmiembro_asismiembroequipo = db.Column(db.Numeric(3, 0), nullable=False)
+    conmiemequipo = db.Column(db.Integer, primary_key=True, nullable=False)
+    conseequipo_miemeq_asismiemeq = db.Column(db.Integer, nullable=False)
+    itemmiembro_asismiembroequipo = db.Column(db.Integer, nullable=False)
 
     programacion = db.relationship('Programacion', primaryjoin='Asismiembroequipo.consecprogra_asismiembroequipo == Programacion.consecprogra', backref='asismiembroequipoes')
     miembroequipo = db.relationship('Miembroequipo', primaryjoin='and_(Asismiembroequipo.conseequipo_miemeq_asismiemeq == Miembroequipo.conseequipo_miembroequipo, Asismiembroequipo.itemmiembro_asismiembroequipo == Miembroequipo.itemmiembro)', backref='asismiembroequipoes')

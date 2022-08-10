@@ -4,7 +4,7 @@ class Inscritopraclibre(db.Model):
     __tablename__ = 'inscritopraclibre'
 
     consecprogra_inscritopraclibre = db.Column(db.ForeignKey('programacion.consecprogra', ondelete='RESTRICT', onupdate='RESTRICT'), primary_key=True, nullable=False, index=True)
-    consecpract = db.Column(db.Numeric(4, 0), primary_key=True, nullable=False)
+    consecpract = db.Column(db.Integer, primary_key=True, nullable=False)
     codempleado_inscritopraclibre = db.Column(db.ForeignKey('empleado.codempleado', ondelete='RESTRICT', onupdate='RESTRICT'), index=True)
     codestu_inscritopraclibre = db.Column(db.ForeignKey('estudiante.codestu', ondelete='RESTRICT', onupdate='RESTRICT'), index=True)
 

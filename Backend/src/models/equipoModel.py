@@ -4,7 +4,7 @@ from .empleadoModel import Empleado
 class Equipo(db.Model):
     __tablename__ = 'equipo'
 
-    conseequipo = db.Column(db.Numeric(3, 0), primary_key=True)
+    conseequipo = db.Column(db.Integer, primary_key=True)
     iddeporte_equipo = db.Column(db.ForeignKey('deporte.iddeporte', ondelete='RESTRICT', onupdate='RESTRICT'), nullable=False, index=True)
     codempleado_equipo = db.Column(db.ForeignKey('empleado.codempleado', ondelete='RESTRICT', onupdate='RESTRICT'), nullable=False, index=True)
     fecharesol = db.Column(db.Date, nullable=False)

@@ -22,9 +22,9 @@ class Asismiembroequipo(db.Model):
     )
 
     consecprogra_asismiembroequipo = db.Column(db.ForeignKey('programacion.consecprogra', ondelete='RESTRICT', onupdate='RESTRICT'), primary_key=True, nullable=False, index=True)
-    conmiemequipo = db.Column(db.Numeric(4, 0), primary_key=True, nullable=False)
-    conseequipo_miemeq_asismiemeq = db.Column(db.Numeric(3, 0), nullable=False)
-    itemmiembro_asismiembroequipo = db.Column(db.Numeric(3, 0), nullable=False)
+    conmiemequipo = db.Column(db.Integer, primary_key=True, nullable=False)
+    conseequipo_miemeq_asismiemeq = db.Column(db.Integer, nullable=False)
+    itemmiembro_asismiembroequipo = db.Column(db.Integer, nullable=False)
 
     programacion = db.relationship('Programacion', primaryjoin='Asismiembroequipo.consecprogra_asismiembroequipo == Programacion.consecprogra', backref='asismiembroequipoes')
     miembroequipo = db.relationship('Miembroequipo', primaryjoin='and_(Asismiembroequipo.conseequipo_miemeq_asismiemeq == Miembroequipo.conseequipo_miembroequipo, Asismiembroequipo.itemmiembro_asismiembroequipo == Miembroequipo.itemmiembro)', backref='asismiembroequipoes')
@@ -38,9 +38,9 @@ class Asistirresponsable(db.Model):
         db.Index('responsable_asisresp_fk', 'consecprogra_responsable', 'consecres_asistirresponsable')
     )
 
-    consecprogra_responsable = db.Column(db.Numeric(4, 0), primary_key=True, nullable=False)
-    consecres_asistirresponsable = db.Column(db.Numeric(4, 0), primary_key=True, nullable=False)
-    consecasisres = db.Column(db.Numeric(4, 0), primary_key=True, nullable=False)
+    consecprogra_responsable = db.Column(db.Integer, primary_key=True, nullable=False)
+    consecres_asistirresponsable = db.Column(db.Integer, primary_key=True, nullable=False)
+    consecasisres = db.Column(db.Integer, primary_key=True, nullable=False)
     fechaasisres = db.Column(db.Date, nullable=False)
     horaasisres = db.Column(db.Date, nullable=False)
 
@@ -85,7 +85,7 @@ class Dia(db.Model):
 class Elemendeportivo(db.Model):
     __tablename__ = 'elemendeportivo'
 
-    consecelemento = db.Column(db.Numeric(5, 0), primary_key=True)
+    consecelemento = db.Column(db.Integer, primary_key=True)
     codespacio_elemendeportivo = db.Column(db.ForeignKey('espacio.codespacio', ondelete='RESTRICT', onupdate='RESTRICT'), nullable=False, index=True)
     idtipoelemento_elemendeportivo = db.Column(db.ForeignKey('tipoelemento.idtipoelemento', ondelete='RESTRICT', onupdate='RESTRICT'), nullable=False, index=True)
     idestado_elemendeportivo = db.Column(db.ForeignKey('estado.idestado', ondelete='RESTRICT', onupdate='RESTRICT'), nullable=False, index=True)
@@ -113,7 +113,7 @@ class Empleado(db.Model):
 class EmpleadoCargo(db.Model):
     __tablename__ = 'empleado_cargo'
 
-    consec = db.Column(db.Numeric(3, 0), primary_key=True)
+    consec = db.Column(db.Integer, primary_key=True)
     codespacio_empleadocargo = db.Column(db.ForeignKey('espacio.codespacio', ondelete='RESTRICT', onupdate='RESTRICT'), nullable=False, index=True)
     idcargo_empleadocargo = db.Column(db.ForeignKey('cargo.idcargo', ondelete='RESTRICT', onupdate='RESTRICT'), nullable=False, index=True)
     codempleado_empleadocargo = db.Column(db.ForeignKey('empleado.codempleado', ondelete='RESTRICT', onupdate='RESTRICT'), nullable=False, index=True)
@@ -129,7 +129,7 @@ class EmpleadoCargo(db.Model):
 class Equipo(db.Model):
     __tablename__ = 'equipo'
 
-    conseequipo = db.Column(db.Numeric(3, 0), primary_key=True)
+    conseequipo = db.Column(db.Integer, primary_key=True)
     iddeporte_equipo = db.Column(db.ForeignKey('deporte.iddeporte', ondelete='RESTRICT', onupdate='RESTRICT'), nullable=False, index=True)
     codempleado_equipo = db.Column(db.ForeignKey('empleado.codempleado', ondelete='RESTRICT', onupdate='RESTRICT'), nullable=False, index=True)
     fecharesol = db.Column(db.Date, nullable=False)
@@ -195,7 +195,7 @@ class Inscritopraclibre(db.Model):
     __tablename__ = 'inscritopraclibre'
 
     consecprogra_inscritopraclibre = db.Column(db.ForeignKey('programacion.consecprogra', ondelete='RESTRICT', onupdate='RESTRICT'), primary_key=True, nullable=False, index=True)
-    consecpract = db.Column(db.Numeric(4, 0), primary_key=True, nullable=False)
+    consecpract = db.Column(db.Integer, primary_key=True, nullable=False)
     codempleado_inscritopraclibre = db.Column(db.ForeignKey('empleado.codempleado', ondelete='RESTRICT', onupdate='RESTRICT'), index=True)
     codestu_inscritopraclibre = db.Column(db.ForeignKey('estudiante.codestu', ondelete='RESTRICT', onupdate='RESTRICT'), index=True)
 
@@ -217,7 +217,7 @@ class Miembroequipo(db.Model):
     __tablename__ = 'miembroequipo'
 
     conseequipo_miembroequipo = db.Column(db.ForeignKey('equipo.conseequipo', ondelete='RESTRICT', onupdate='RESTRICT'), primary_key=True, nullable=False, index=True)
-    itemmiembro = db.Column(db.Numeric(3, 0), primary_key=True, nullable=False)
+    itemmiembro = db.Column(db.Integer, primary_key=True, nullable=False)
     codestu_miembroequipo = db.Column(db.ForeignKey('estudiante.codestu', ondelete='RESTRICT', onupdate='RESTRICT'), nullable=False, index=True)
 
     estudiante = db.relationship('Estudiante', primaryjoin='Miembroequipo.codestu_miembroequipo == Estudiante.codestu', backref='miembroequipoes')
@@ -239,10 +239,10 @@ class Prestamo(db.Model):
         db.Index('asistirresponsable_prestamo_fk', 'consecprogra_resp_prest', 'consecres_asisresp_prest', 'consecasisres_prestamo')
     )
 
-    consecprestamo = db.Column(db.Numeric(4, 0), primary_key=True)
-    consecprogra_resp_prest = db.Column(db.Numeric(4, 0), nullable=False)
-    consecres_asisresp_prest = db.Column(db.Numeric(4, 0), nullable=False)
-    consecasisres_prestamo = db.Column(db.Numeric(4, 0), nullable=False)
+    consecprestamo = db.Column(db.Integer, primary_key=True)
+    consecprogra_resp_prest = db.Column(db.Integer, nullable=False)
+    consecres_asisresp_prest = db.Column(db.Integer, nullable=False)
+    consecasisres_prestamo = db.Column(db.Integer, nullable=False)
     consecelemento_prestamo = db.Column(db.ForeignKey('elemendeportivo.consecelemento', ondelete='RESTRICT', onupdate='RESTRICT'), nullable=False, index=True)
 
     elemendeportivo = db.relationship('Elemendeportivo', primaryjoin='Prestamo.consecelemento_prestamo == Elemendeportivo.consecelemento', backref='prestamoes')
@@ -253,7 +253,7 @@ class Prestamo(db.Model):
 class Programacion(db.Model):
     __tablename__ = 'programacion'
 
-    consecprogra = db.Column(db.Numeric(4, 0), primary_key=True)
+    consecprogra = db.Column(db.Integer, primary_key=True)
     codespacio_programacion = db.Column(db.ForeignKey('espacio.codespacio', ondelete='RESTRICT', onupdate='RESTRICT'), index=True)
     iddeporte_programacion = db.Column(db.ForeignKey('deporte.iddeporte', ondelete='RESTRICT', onupdate='RESTRICT'), nullable=False, index=True)
     idperiodo_programacion = db.Column(db.ForeignKey('periodo.idperiodo', ondelete='RESTRICT', onupdate='RESTRICT'), nullable=False, index=True)
@@ -261,8 +261,8 @@ class Programacion(db.Model):
     idhorainicio_programacion = db.Column(db.ForeignKey('hora.idhora', ondelete='RESTRICT', onupdate='RESTRICT'), nullable=False, index=True)
     idhorafin_programacion = db.Column(db.ForeignKey('hora.idhora', ondelete='RESTRICT', onupdate='RESTRICT'), nullable=False, index=True)
     iddia_programacion = db.Column(db.ForeignKey('dia.iddia', ondelete='RESTRICT', onupdate='RESTRICT'), nullable=False, index=True)
-    cupo = db.Column(db.Numeric(3, 0), nullable=False)
-    noinscrito = db.Column(db.Numeric(3, 0), nullable=False)
+    cupo = db.Column(db.Integer, nullable=False)
+    noinscrito = db.Column(db.Integer, nullable=False)
 
     espacio = db.relationship('Espacio', primaryjoin='Programacion.codespacio_programacion == Espacio.codespacio', backref='programacions')
     actividad = db.relationship('Actividad', primaryjoin='Programacion.idactividad_programacion == Actividad.idactividad', backref='programacions')
@@ -278,7 +278,7 @@ class Responsable(db.Model):
     __tablename__ = 'responsable'
 
     consecprogra_responsable = db.Column(db.ForeignKey('programacion.consecprogra', ondelete='RESTRICT', onupdate='RESTRICT'), primary_key=True, nullable=False, index=True)
-    consecres = db.Column(db.Numeric(4, 0), primary_key=True, nullable=False)
+    consecres = db.Column(db.Integer, primary_key=True, nullable=False)
     codempleado_responsable = db.Column(db.ForeignKey('empleado.codempleado', ondelete='RESTRICT', onupdate='RESTRICT'), nullable=False, index=True)
     codestu_responsable = db.Column(db.ForeignKey('estudiante.codestu', ondelete='RESTRICT', onupdate='RESTRICT'), index=True)
     idrol_responsable = db.Column(db.ForeignKey('rol.idrol', ondelete='RESTRICT', onupdate='RESTRICT'), index=True)
